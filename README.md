@@ -11,7 +11,7 @@
 面试冲刺 | 第7-8周 | 高频面试题与模拟面试 | 算法题、测试场景题、项目复盘 
 
 二、阶段1：基础夯实（第1-2周）
-1. Python编程（重点！）
+1. Python编程（重点！）廖雪峰Python: https://liaoxuefeng.com/books/python/introduction/index.html
 必学内容：
   - 基础语法：变量、循环、条件判断、函数。
   - 数据结构：列表、字典、字符串操作。
