@@ -1,0 +1,266 @@
+"""
+初识对象 面向对象编程，让对象干活
+
+设计class类-创建对象-对象属性赋值
+    类的定义  完美描述现实世界事物
+     class 类名称:
+        类的属性，即变量（成员变量）
+        类的行为，即函数（成员方法），常称为方法
+            def 方法名(self, 形参……):   传参时self忽略
+                
+                方法体                  !访问成员变量需self.变量名
+                                        !使用方法同理 self.方法
+
+    对象创建
+        变量/对象=类名称()
+    属性的赋值
+        (变量/对象).属性=*
+      __init__()构造方法  创建类对象时，自动执行，传入参数自动传递给__init__()
+        def __init__(self, 形参1, 形参2)
+
+常用内置类方法（魔术方法）
+    def __init__  构造方法
+
+    def __str__ (self) 字符串方法
+        将类对象转换为字符串
+        返回字符串，内容自行定义
+
+    def __lt__(self, other)  小于、大于符号比较
+
+    def __le__小于等于、大于等于符号比较
+
+    def __eq__==符号比较
+
+封装 
+    以两个下划线__开头定义: __私有成员变量 __私有成员方法
+    类中可访问这些私有，类对象无法访问
+
+继承 
+    单继承 相当于在旧的class中添加新功能
+        class 类名(父类名):
+            类内容体
+    多继承 继承多个父类
+        class 类名(父类1, 父类2, ……父类n): 
+            类内容体            对于有相同的成员变量, 取用父类1的
+            pass 占位语句，可用于避免内容为空报错，但不想实际执行什么功能
+    打印继承顺序
+        print(子类.__mro__)
+    
+    复写父类成员  在子类中重新定义同名的属性和方法
+        在子类中重新定义即可
+
+    子类中调用父类成员
+        父类名.成员变量
+        父类名.成员方法(self)
+
+        #super只在方法中使用,
+        #super(类名, self) 代表 查找 MRO(方法解析顺序)中 类名 之后的类
+        super(指定类, self).成员变量
+        super(指定类, self).成员方法()
+
+类型注解  协助做代码提示（提示性的）
+    变量类型注解
+        变量名: 数据类型=value
+        变量名=value    #type: 数据类型
+        对象:类名=类名()  对象为‘类名’类型
+         class student:
+            pass
+         stu:student=student()
+        my_list: list[str, int, bool]=['555', 56, True]
+        my_dict: dict[str, int]={'555', 55}
+    函数/方法的类型注解
+        形参注解
+            def 函数/方法名(形参名1: 类型, 形参名2: 类型)
+        返回值注解
+            def 函数/方法名(形参名1: 类型)->类型:
+            
+    Union类型注解 from typing import Union
+        my_dict: dict[str, Union[str, int]]={'name': '卷安安', 'age': 26}
+        def 函数/方法名(形参名1: Union[str, int]……)->Union[str, int]:
+
+        
+多态 多种状态。完成某个行为时，使用不同对象会得到不同状态
+    包含抽象方法的类称为抽象类
+    方法体是空实现的（pass）称为抽象方法
+"""
+############################################################## 
+# 设计类
+class info_table:
+    name=None       # 记录学生姓名
+    gender=None     # 性别
+    age=None        # 年龄
+# 创建对象
+stu_1=info_table()
+# 对象属性赋值
+stu_1.name='猪噜噜'
+stu_1.gender='男'
+stu_1.age='12'
+# 检查是否赋值
+print(stu_1.name)
+print(stu_1.gender)
+print(stu_1.age)
+############################################################## 
+
+############################################################## 
+# 类的定义
+class drinks:
+    # 属性
+    Soda=None
+    Juice=None
+    # 行为
+    def payment(self):
+        if self.Soda<8:
+            print(f'你选购的Soda，消费{self.Soda}元')
+        else:
+            print(f'你选购的Juice，消费{self.Juice}元')
+    def payment2(self, price):
+        if self.Soda>price:
+            print(f'你选购的Juice，消费{self.Juice}元')
+        elif self.Soda<price:
+            print(f'你选购的Soda，消费{self.Soda}元')
+        else:
+            print('什么都没喝上')
+
+# 对象1
+customer_1=drinks()
+# 赋值变量
+customer_1.Soda=8
+customer_1.Juice=4
+# 调用方法
+customer_1.payment2(8)
+
+# 对象2
+customer_2=drinks()
+# 赋值变量
+customer_2.Soda=3.5
+customer_2.Juice=4
+# 调用方法
+customer_2.payment2(4)
+############################################################## 
+
+############################################################## 
+# 设计类
+class Students:
+    # name=None       # 记录学生姓名
+    # gender=None     # 性别
+    # age=None        # 年龄
+    def __init__(self, name, gender, age):
+        # 既能定义成员变量，又能赋值
+        self.name=name
+        self.gender=gender
+        self.age=age
+        print(f'姓名：{self.name}，性别：{self.gender}，年龄：{self.age}')
+# 创建对象
+stu_1=Students('猪噜噜', '男', '12')
+print(stu_1.name)
+print(stu_1.gender)
+print(stu_1.age)
+############################################################## 
+
+############################################################## 
+class Students:
+    __height=int(input('输入你的身高'))  # 个人身高
+    def __init__(self, name: str, gender: str, age: str):
+        self.name=name
+        self.gender=gender
+        self.age=age
+        print(f'姓名：{self.name}，性别：{self.gender}，年龄：{self.age}')
+        ###############################
+        # 字符串
+    def __str__(self):
+        message=f'姓：{self.name}，性别：{self.gender}，年龄：{self.age}'
+        return message
+        ################################
+        # 大小比较
+    def __lt__(self, other):
+        return self.age<other.age
+        ################################
+    def __BMI_test(self):
+            print('你过关！')
+    def BMI_test(self):
+        if self.__height<140:
+            self.__BMI_test()
+        else:
+            print('减肥！')
+# 创建对象
+stu_1=Students('猪噜噜', '男', '12')
+# 若无__str__，则
+# print(stu_1) # 输出内存地址
+
+stu_2=Students('羊咩咩', '女', '10')
+# 大小比较方法
+# print(stu_1<stu_2) # 与return结果一致，则为true
+# print(stu_1>stu_2)
+
+##################################################
+# 封装
+"""
+私有变量可以赋值并不是一开始的那个私有变量了，
+新建了一个新的成员,可以用id()检查两个的地址
+stu_1.__height=140
+"""
+# print(stu_1.__height)  # 找不到
+print(id(stu_1))
+stu_1.__height=170
+print(stu_1.__height)
+print(id(stu_1.__height))
+
+# 私有变量
+stu_1.BMI_test()
+
+# 单继承
+class new_student_info(Students):
+    def new_index(self, weight):
+        self.weight=weight
+        print(f'{self.name}，{self.gender}，{self.age}岁，{self.weight}斤')
+        
+stu_new_1=new_student_info('猪噜噜',"男","12") # __init__自动运行输出
+stu_new_1.new_index(130)
+print(stu_new_1.age)
+
+# 多继承
+    # 首功能
+class py_func:
+    day=7
+    def __init__(self, chapter1, chapter2, chapter3):
+        self.chapter1=chapter1
+        self.chapter2=chapter2
+        self.chapter3=chapter3
+        message=f'你娃完成了{self.chapter1}, {self.chapter2} 和 {self.chapter3}的学习'
+        print(message)
+
+    # 功能2
+class SQL_func:
+    day=3
+    def S_F(self):
+        print('你娃又学习了MySQL语言！')
+
+    # 功能3
+class Selenium_func:
+    day=5
+    # 父类调用与重定义
+    # py_func.day=8
+    def se_f(self):
+        # super(SQL_func, self).S_F()   # 错误的，super(类名, self) 代表 查找 MRO（方法解析顺序）中 类名 之后的类
+        super(Selenium_func, self).S_F()
+        print('你娃又学会了Selenium！')
+
+    # 附加功能
+        """
+        如果 new_engineer 继承了 py_func，它应该有 __init__ 方法
+        来初始化 chapter1, chapter2, chapter3，
+        否则 new_engineer('变量', '函数', '类') 会报错
+        class new_engineer(py_func, Selenium_func, SQL_func):
+            # def __init__(self):
+                print('恭喜你，你娃闯关成功！')
+        """
+class new_engineer(py_func, Selenium_func, SQL_func):
+    def __init__(self, chapter1, chapter2, chapter3):
+        super().__init__(chapter1, chapter2, chapter3)  # 调用 py_func 的 __init__()
+        print('恭喜你，你娃闯关成功！')
+
+
+learn_hard=new_engineer('变量', '函数', '类')
+print(new_engineer.day)
+learn_hard.se_f()
+# print(new_engineer.__mro__)
