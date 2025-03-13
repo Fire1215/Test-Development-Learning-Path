@@ -1,0 +1,9 @@
+数据库是用来存储数据的  组织层级：库--表--数据
+	用于组织数据并存储数据
+	数据库软件就是提供库-表-数据，即提供数据组织存储的能力，也称为数据库管理系统
+	借助SQL语言，完成对数据的增删改查等操作
+常见数据库软件有：Oracle、MySQL、PostgreSQL、MariaDB、SQL Server、ClickHouse、SQLite、DB2、Apache Hive
+
+SQL语言是对数据库、数据进行操作、管理、查询的标准计算机语言语言
+
+	
