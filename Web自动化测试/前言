@@ -1,0 +1,9 @@
+主流WEB自动化测试工具
+1.QTP
+  是一个商业化的功能测试工具，收费，支持wb,桌面自动化测试。
+2.Selenium（本阶段学习）
+  Selenium是一个开源的web自动化测试工具，免费，主要做功能测试。
+3.Robot framework
+  Robot Framework是一个基于Python可扩展地关键字驱动的测试自动化框架。
+
+让程序代替人工自动验证web项目功能的过程
