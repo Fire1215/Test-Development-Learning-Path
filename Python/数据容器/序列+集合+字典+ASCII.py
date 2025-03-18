@@ -32,6 +32,7 @@
     新增(更新)元素 字典[key]=value
     删除元素 字典.pop(key) 获得指定key的value,同时该键值对从字典删除(有返回值)
     清空字典 字典.clear()
+    dict.get(key, default)获取dict中对应key的value，若不存在key，则返回默认值
     获取字典中全部的key 字典.keys() 有返回值(只能顶层操作)
         可结合for循环遍历字典
       for key in 字典:(挨个得到key)
