@@ -1,0 +1,10 @@
+{
+    "name":"卷卷",
+    "gender":"male",
+    "address":{
+        "city":"成都",
+        "country":"中国"
+    },
+    "my_list1":[1, "list", "神"],
+    "my_list2":[23423, true, false]
+}
